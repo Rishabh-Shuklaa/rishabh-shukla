@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rishabh Shukla — Biometrics & Computer Vision</title>
+  <meta name="description" content="Rishabh Shukla — Ph.D. candidate in Computer Science and Engineering specializing in Biometrics, Computer Vision, and Image Processing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: { brand: {
+            50:'#eef2ff',100:'#e0e7ff',200:'#c7d2fe',300:'#a5b4fc',400:'#818cf8',500:'#6366f1',600:'#4f46e5',700:'#4338ca',800:'#3730a3',900:'#312e81'} }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass { backdrop-filter: blur(10px); background: rgba(255,255,255,0.7); }
+    @media (prefers-color-scheme: dark) { .glass { background: rgba(17,24,39,0.6); } }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+  <!-- ===== Top Bar / Nav ===== -->
+  <header class="sticky top-0 z-50 border-b border-gray-200/60 dark:border-gray-800/80 bg-white/70 dark:bg-gray-900/50 glass">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between py-3">
+        <a href="#home" class="flex items-center gap-3 group">
+          <div class="h-8 w-8 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold">RS</div>
+          <span class="font-semibold tracking-tight group-hover:text-brand-600">Rishabh Shukla</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+          <a href="#about" class="hover:text-brand-600">About</a>
+          <a href="#news" class="hover:text-brand-600">News</a>
+          <a href="#publications" class="hover:text-brand-600">Publications</a>
+          <a href="#projects" class="hover:text-brand-600">Projects</a>
+          <a href="#experience" class="hover:text-brand-600">Experience</a>
+          <a href="#education" class="hover:text-brand-600">Education</a>
+          <a href="#skills" class="hover:text-brand-600">Skills</a>
+          <a href="#service" class="hover:text-brand-600">Service</a>
+          <a href="#contact" class="hover:text-brand-600">Contact</a>
+        </nav>
+        <div class="flex items-center gap-2">
+          <a href="cv.pdf" class="hidden sm:inline-flex px-3 py-2 rounded-xl bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700" download>
+            Download CV
+          </a>
+          <button id="themeToggle" aria-label="Toggle theme" class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800">
+            <!-- sun -->
+            <svg id="sun" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 block dark:hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M6.76 4.84l-1.8-1.79-1.42 1.41 1.79 1.8 1.43-1.42zM1 13h3v-2H1v2zm10-9h2V1h-2v3zm7.04 1.46l1.79-1.8-1.41-1.41-1.8 1.79 1.42 1.42zM20 11v2h3v-2h-3zm-1.76 8.16l1.8 1.79 1.41-1.41-1.79-1.8-1.42 1.42zM11 20h2v3h-2v-3zM4.22 18.36l-1.79 1.8 1.41 1.41 1.8-1.79-1.42-1.42z"/><circle cx="12" cy="12" r="5"/></svg>
+            <!-- moon -->
+            <svg id="moon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:block" viewBox="0 0 24 24" fill="currentColor"><path d="M21.64 13A9 9 0 0111 2.36 9 9 0 1021.64 13z"/></svg>
+          </button>
+          <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800" aria-label="Open menu">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
+      <!-- mobile nav -->
+      <nav id="mobileNav" class="md:hidden hidden pb-4">
+        <div class="grid gap-2 text-sm font-medium">
+          <a href="#about" class="px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">About</a>
+          <a href="#news" class="px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">News</a>
+          <a href="#publications" class="px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">Publications</a>
+          <a href="#projects" class="px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">Projects</a>
+          <a href="#experience" class="px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">Experience</a>
+          <a href="#education" class="px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">Education</a>
+          <a href="#skills" class="px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">Skills</a>
+          <a href="#service" class="px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">Service</a>
+          <a href="#contact" class="px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section id="home" class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-brand-50 to-transparent dark:from-gray-800"></div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-14 sm:pb-24 relative">
+      <div class="grid md:grid-cols-[1.1fr,0.9fr] items-center gap-10">
+        <div>
+          <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-700 bg-brand-100 rounded-full px-3 py-1">Biometrics • Computer Vision • Image Processing</span>
+          <h1 class="mt-5 text-4xl sm:text-5xl font-extrabold tracking-tight">Rishabh Shukla</h1>
+          <p class="mt-3 text-lg text-gray-700 dark:text-gray-300">Ph.D. Candidate (CSE), IIT Jammu • Visiting Scholar (NTNU) • Reviewer @ CVPR, WACV, ICPR • Publications at IJCNN 2025, WACV 2024/2025, IEEE SMC, BigData, and more.</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="mailto:rishabh.shukla@iitjammu.ac.in" class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700">Email Me</a>
+            <a href="tel:+919140058829" class="px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-700 hover:border-brand-600">Call</a>
+            <a href="https://www.linkedin.com/in/rishabh-shukla-5879b0172" target="_blank" rel="noopener" class="px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-700 hover:border-brand-600">LinkedIn</a>
+          </div>
+          <div class="mt-4 text-sm text-gray-600 dark:text-gray-400">Lucknow, India • rishabh.shukla@iitjammu.ac.in</div>
+        </div>
+        <div class="relative">
+          <div class="aspect-[4/3] rounded-3xl bg-gradient-to-tr from-brand-200 to-brand-400 dark:from-gray-700 dark:to-gray-800 shadow-xl overflow-hidden">
+            <!-- Replace this placeholder with your photo: ./assets/profile.jpg -->
+            <img src="./assets/profile.jpg" alt="Rishabh Shukla portrait placeholder" class="h-full w-full object-cover mix-blend-multiply opacity-80" />
+          </div>
+          <div class="absolute -bottom-6 -left-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-4 w-56 border border-gray-200/60 dark:border-gray-700/60">
+            <div class="text-xs uppercase font-semibold text-gray-500">Current Role</div>
+            <div class="font-semibold">Visiting Scholar</div>
+            <div class="text-sm text-gray-600 dark:text-gray-300">Norwegian University of Science and Technology</div>
+            <div class="text-xs text-gray-500">Oct 2024 – Apr 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section id="about" class="py-16 sm:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-3 gap-10 items-start">
+        <div>
+          <h2 class="text-2xl font-bold">About</h2>
+          <p class="mt-2 text-gray-600 dark:text-gray-300">I am a researcher focused on privacy-preserving biometrics and image processing. My work explores synthetic biometric generation, cancelable templates, and inpainting/outpainting models that contribute to secure authentication systems and robust visual understanding.</p>
+        </div>
+        <div class="md:col-span-2 grid sm:grid-cols-2 gap-6">
+          <div class="p-5 rounded-2xl border border-gray-200/70 dark:border-gray-800/70 bg-white dark:bg-gray-800"><div class="text-sm text-gray-500">Doctoral Program</div><div class="font-semibold">Ph.D. (CSE), IIT Jammu — Ongoing</div></div>
+          <div class="p-5 rounded-2xl border border-gray-200/70 dark:border-gray-800/70 bg-white dark:bg-gray-800"><div class="text-sm text-gray-500">Core Areas</div><div class="font-semibold">Biometrics, Computer Vision, Image Processing</div></div>
+          <div class="p-5 rounded-2xl border border-gray-200/70 dark:border-gray-800/70 bg-white dark:bg-gray-800"><div class="text-sm text-gray-500">Languages</div><div class="font-semibold">Python, C, PHP, HTML5, CSS3</div></div>
+          <div class="p-5 rounded-2xl border border-gray-200/70 dark:border-gray-800/70 bg-white dark:bg-gray-800"><div class="text-sm text-gray-500">Databases & OS</div><div class="font-semibold">MySQL, SQLite • Windows, Ubuntu</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== News & Updates ===== -->
+  <section id="news" class="py-16 bg-white dark:bg-gray-950">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-end justify-between gap-4">
+        <h2 class="text-2xl font-bold">News & Updates</h2>
+        <a href="https://www.linkedin.com/in/rishabh-shukla-5879b0172" target="_blank" rel="noopener" class="text-sm text-brand-700 hover:underline">More on LinkedIn →</a>
+      </div>
+      <div class="mt-6 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Duplicate/modify cards as you post updates -->
+        <article class="rounded-2xl border border-gray-200/70 dark:border-gray-800/70 p-5 bg-gray-50/60 dark:bg-gray-900">
+          <div class="text-xs text-gray-500">Aug–Sep 2025</div>
+          <h3 class="font-semibold">IJCNN 2025: Face Image Inpainting paper</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Analyzing Face Image Inpainting with Attribute-Driven Generative Network accepted to IJCNN 2025.</p>
+        </article>
+        <article class="rounded-2xl border border-gray-200/70 dark:border-gray-800/70 p-5 bg-gray-50/60 dark:bg-gray-900">
+          <div class="text-xs text-gray-500">Jan 2025</div>
+          <h3 class="font-semibold">WACV Workshop 2025: Parallel Prints</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Generating realistic cancelable fingerprint templates presented at WACVW 2025.</p>
+        </article>
+        <article class="rounded-2xl border border-gray-200/70 dark:border-gray-800/70 p-5 bg-gray-50/60 dark:bg-gray-900">
+          <div class="text-xs text-gray-500">Oct 2024 – Apr 2025</div>
+          <h3 class="font-semibold">Visiting Scholar @ NTNU</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Researching privacy-preserving biometrics at the Norwegian University of Science and Technology.</p>
+        </article>
+        <article class="rounded-2xl border border-gray-200/70 dark:border-gray-800/70 p-5 bg-gray-50/60 dark:bg-gray-900">
+          <div class="text-xs text-gray-500">2024</div>
+          <h3 class="font-semibold">Doctoral Consortium & Winter School Awards</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Doctoral Consortium (FG 2024) travel grant • Outstanding Participation — Winter School on Biometrics 2024.</p>
+        </article>
+        <article class="rounded-2xl border border-gray-200/70 dark:border-gray-800/70 p-5 bg-gray-50/60 dark:bg-gray-900">
+          <div class="text-xs text-gray-500">2024–2025</div>
+          <h3 class="font-semibold">Outstanding Reviewer</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Recognized as Outstanding Reviewer at CVPR 2025 and BMVC 2024.</p>
+        </article>
+        <article class="rounded-2xl border border-gray-200/70 dark:border-gray-800/70 p-5 bg-gray-50/60 dark:bg-gray-900">
+          <div class="text-xs text-gray-500">Ongoing</div>
+          <h3 class="font-semibold">Open to Collaborations</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Interested in joint work on cancelable biometrics, synthetic modalities, and robust image restoration.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Publications ===== -->
+  <section id="publications" class="py-16 sm:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-end justify-between gap-4">
+        <h2 class="text-2xl font-bold">Selected Publications</h2>
+        <div class="text-sm text-gray-500">*Full list available on request</div>
+      </div>
+      <ol class="mt-6 space-y-4 list-decimal list-inside">
+        <li>
+          <span class="font-semibold">Analyzing Face Image Inpainting with Attribute-Driven Generative Network</span> — <span class="italic">International Joint Conference on Neural Networks</span>, 2025.
+        </li>
+        <li>
+          <span class="font-semibold">Parallel Prints: Generating Realistic Cancelable Fingerprint Templates</span> — <span class="italic">WACV Workshop</span>, 2025.
+        </li>
+        <li>
+          <span class="font-semibold">Bridging the Gap: Creating Authentic Biometric Templates for Secure Authentication Systems</span> — <span class="italic">IEEE SMC</span>, 2024.
+        </li>
+        <li>
+          <span class="font-semibold">Vikriti-ID: A Novel Approach For Real Looking Fingerprint Dataset Generation</span> — <span class="italic">WACV</span>, 2024.
+        </li>
+        <li>
+          <span class="font-semibold">Secure and Privacy Preserving Proxy Biometrics Identities</span> — <span class="italic">AINA</span>, 2023.
+        </li>
+        <li>
+          <span class="font-semibold">Fingerprint digital twin for secure and privacy preserving biometric authentication</span> — <span class="italic">IEEE SMC</span>, 2023.
+        </li>
+        <li>
+          <span class="font-semibold">Deep learning based cancelable biometric system</span> — <span class="italic">ICCCNT</span>, 2023.
+        </li>
+        <li>
+          <span class="font-semibold">An Experimental Study on Random Projection Based Biometric Security</span> — <span class="italic">IEEE BigData</span>, 2023.
+        </li>
+        <li>
+          <span class="font-semibold">Optical coherence tomography classification through Deep Learning</span> — <span class="italic">GlobalCon-CEPT</span>, 2022.
+        </li>
+        <li>
+          <span class="font-semibold">Rural Electrification Using Computer Vision and Wireless Sensor Networks</span> — <span class="italic">CONIT</span>, 2022.
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== Projects ===== -->
+  <section id="projects" class="py-16 bg-white dark:bg-gray-950">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl font-bold">Projects</h2>
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Project Card Template -->
+        <article class="rounded-2xl overflow-hidden border border-gray-200/70 dark:border-gray-800/70 bg-gray-50/60 dark:bg-gray-900">
+          <img src="./assets/project-proxy-fp.jpg" alt="Proxy fingerprints placeholder" class="aspect-video w-full object-cover" />
+          <div class="p-5">
+            <h3 class="font-semibold">Proxy Fingerprint for Metaverse Applications</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Developed proxy fingerprints combined with user-specific keys for revocability and cancelability.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs"><span class="px-2 py-1 bg-brand-100 text-brand-800 rounded-full">Biometrics</span><span class="px-2 py-1 bg-gray-200/60 dark:bg-gray-800 rounded-full">Security</span></div>
+          </div>
+        </article>
+        <article class="rounded-2xl overflow-hidden border border-gray-200/70 dark:border-gray-800/70 bg-gray-50/60 dark:bg-gray-900">
+          <img src="./assets/project-synth-bio.jpg" alt="Synthetic biometrics placeholder" class="aspect-video w-full object-cover" />
+          <div class="p-5">
+            <h3 class="font-semibold">Synthetic Biometric Generation</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Custom generative model architecture to generate biometric data with controllable variation.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs"><span class="px-2 py-1 bg-brand-100 text-brand-800 rounded-full">GANs</span><span class="px-2 py-1 bg-gray-200/60 dark:bg-gray-800 rounded-full">Privacy</span></div>
+          </div>
+        </article>
+        <article class="rounded-2xl overflow-hidden border border-gray-200/70 dark:border-gray-800/70 bg-gray-50/60 dark:bg-gray-900">
+          <img src="./assets/project-inpaint.jpg" alt="Inpainting placeholder" class="aspect-video w-full object-cover" />
+          <div class="p-5">
+            <h3 class="font-semibold">Image Inpainting</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Convolutional network for deformed fingerprint restoration via image inpainting.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs"><span class="px-2 py-1 bg-brand-100 text-brand-800 rounded-full">Restoration</span><span class="px-2 py-1 bg-gray-200/60 dark:bg-gray-800 rounded-full">CNN</span></div>
+          </div>
+        </article>
+        <article class="rounded-2xl overflow-hidden border border-gray-200/70 dark:border-gray-800/70 bg-gray-50/60 dark:bg-gray-900">
+          <img src="./assets/project-singan.jpg" alt="Short video inpainting placeholder" class="aspect-video w-full object-cover" />
+          <div class="p-5">
+            <h3 class="font-semibold">SinGAN-based Short Video Inpainting</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">One-shot short video inpainting pipeline requiring a single frame for training.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs"><span class="px-2 py-1 bg-brand-100 text-brand-800 rounded-full">SinGAN</span><span class="px-2 py-1 bg-gray-200/60 dark:bg-gray-800 rounded-full">One-shot</span></div>
+          </div>
+        </article>
+        <article class="rounded-2xl overflow-hidden border border-gray-200/70 dark:border-gray-800/70 bg-gray-50/60 dark:bg-gray-900">
+          <img src="./assets/project-outpaint.jpg" alt="Outpainting placeholder" class="aspect-video w-full object-cover" />
+          <div class="p-5">
+            <h3 class="font-semibold">Convolution-Based Image Outpainting</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Extended image boundaries with content-aware outpainting.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs"><span class="px-2 py-1 bg-brand-100 text-brand-800 rounded-full">Outpainting</span><span class="px-2 py-1 bg-gray-200/60 dark:bg-gray-800 rounded-full">CNN</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Experience ===== -->
+  <section id="experience" class="py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl font-bold">Experience</h2>
+      <div class="mt-6 grid md:grid-cols-2 gap-6">
+        <div class="rounded-2xl p-5 border border-gray-200/70 dark:border-gray-800/70 bg-white dark:bg-gray-800">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">Visiting Scholar</h3>
+            <span class="text-xs text-gray-500">Oct 2024 – Apr 2025</span>
+          </div>
+          <div class="text-sm text-gray-600 dark:text-gray-300">Norwegian University of Science and Technology (NTNU)</div>
+          <ul class="mt-3 list-disc pl-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
+            <li>Research on privacy-preserving biometrics and generative methods.</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl p-5 border border-gray-200/70 dark:border-gray-800/70 bg-white dark:bg-gray-800">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">Junior Research Fellow</h3>
+            <span class="text-xs text-gray-500">Dec 2021 – Jan 2022</span>
+          </div>
+          <div class="text-sm text-gray-600 dark:text-gray-300">Indian Institute of Technology Kanpur</div>
+        </div>
+        <div class="rounded-2xl p-5 border border-gray-200/70 dark:border-gray-800/70 bg-white dark:bg-gray-800">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">Assistant Professor</h3>
+            <span class="text-xs text-gray-500">Sep 2021 – Dec 2021</span>
+          </div>
+          <div class="text-sm text-gray-600 dark:text-gray-300">IMS Engineering College</div>
+        </div>
+        <div class="rounded-2xl p-5 border border-gray-200/70 dark:border-gray-800/70 bg-white dark:bg-gray-800">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">Intern</h3>
+            <span class="text-xs text-gray-500">Feb 2019 – May 2019</span>
+          </div>
+          <div class="text-sm text-gray-600 dark:text-gray-300">Hypex Technology</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Education ===== -->
+  <section id="education" class="py-16 bg-white dark:bg-gray-950">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl font-bold">Education</h2>
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+        <div class="rounded-2xl p-5 border border-gray-200/70 dark:border-gray-800/70 bg-gray-50/60 dark:bg-gray-900">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">Ph.D. (CSE)</h3>
+            <span class="text-xs text-gray-500">Pursuing</span>
+          </div>
+          <div class="text-sm text-gray-600 dark:text-gray-300">Indian Institute of Technology, Jammu</div>
+          <div class="text-xs text-gray-500 mt-1">CGPA: 7.0</div>
+        </div>
+        <div class="rounded-2xl p-5 border border-gray-200/70 dark:border-gray-800/70 bg-gray-50/60 dark:bg-gray-900">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">M.Tech. (CSE)</h3>
+            <span class="text-xs text-gray-500">2019–2021</span>
+          </div>
+          <div class="text-sm text-gray-600 dark:text-gray-300">National Institute of Technology, Puducherry</div>
+          <div class="text-xs text-gray-500 mt-1">CGPA: 8.0</div>
+        </div>
+        <div class="rounded-2xl p-5 border border-gray-200/70 dark:border-gray-800/70 bg-gray-50/60 dark:bg-gray-900">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">B.Tech. (CSE)</h3>
+            <span class="text-xs text-gray-500">2015–2019</span>
+          </div>
+          <div class="text-sm text-gray-600 dark:text-gray-300">Dr. A.P.J. Abdul Kalam Technical University</div>
+          <div class="text-xs text-gray-500 mt-1">74.44%</div>
+          <div class="text-xs text-gray-500 mt-1">GATE (2019): 89 percentile</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Skills & Interests ===== -->
+  <section id="skills" class="py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl font-bold">Skills & Interests</h2>
+      <div class="mt-6 grid md:grid-cols-2 gap-6">
+        <div class="rounded-2xl p-5 border border-gray-200/70 dark:border-gray-800/70 bg-white dark:bg-gray-800">
+          <h3 class="font-semibold">Technical</h3>
+          <div class="mt-3 flex flex-wrap gap-2 text-sm">
+            <span class="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700">Python</span>
+            <span class="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700">C</span>
+            <span class="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700">PHP</span>
+            <span class="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700">HTML5</span>
+            <span class="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700">CSS3</span>
+            <span class="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700">MySQL</span>
+            <span class="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700">SQLite</span>
+          </div>
+        </div>
+        <div class="rounded-2xl p-5 border border-gray-200/70 dark:border-gray-800/70 bg-white dark:bg-gray-800">
+          <h3 class="font-semibold">Research Areas</h3>
+          <div class="mt-3 flex flex-wrap gap-2 text-sm">
+            <span class="px-3 py-1 rounded-full bg-brand-100 text-brand-800">Computer Vision</span>
+            <span class="px-3 py-1 rounded-full bg-brand-100 text-brand-800">Biometrics</span>
+            <span class="px-3 py-1 rounded-full bg-brand-100 text-brand-800">Image Processing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Professional Service ===== -->
+  <section id="service" class="py-16 bg-white dark:bg-gray-950">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl font-bold">Professional Service</h2>
+      <ul class="mt-6 list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+        <li>Reviewer: WACV 2025</li>
+        <li>Outstanding Reviewer: CVPR 2025</li>
+        <li>Reviewer: ICPR 2024</li>
+        <li>Outstanding Reviewer: BMVC 2024</li>
+        <li>Reviewer: IEEE SMC 2024</li>
+        <li>Reviewer: CVIP 2023</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section id="contact" class="py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 class="text-2xl font-bold">Get in touch</h2>
+          <p class="mt-2 text-gray-600 dark:text-gray-300">For collaborations, research discussions, or speaking engagements.</p>
+          <div class="mt-6 grid gap-3 text-sm">
+            <a class="flex items-center gap-3 p-3 rounded-xl border border-gray-200/70 dark:border-gray-800/70 hover:border-brand-600" href="mailto:rishabh.shukla@iitjammu.ac.in">
+              <span class="font-medium">rishabh.shukla@iitjammu.ac.in</span><span class="text-gray-500">(Email)</span>
+            </a>
+            <a class="flex items-center gap-3 p-3 rounded-xl border border-gray-200/70 dark:border-gray-800/70 hover:border-brand-600" href="tel:+919140058829">
+              <span class="font-medium">+91 91400 58829</span><span class="text-gray-500">(Phone)</span>
+            </a>
+            <a class="flex items-center gap-3 p-3 rounded-xl border border-gray-200/70 dark:border-gray-800/70 hover:border-brand-600" href="https://www.linkedin.com/in/rishabh-shukla-5879b0172" target="_blank" rel="noopener">
+              <span class="font-medium">linkedin.com/in/rishabh-shukla-5879b0172</span><span class="text-gray-500">(LinkedIn)</span>
+            </a>
+          </div>
+        </div>
+        <form class="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200/70 dark:border-gray-800/70" onsubmit="event.preventDefault(); alert('This is a static demo form. Replace with Formspree/Netlify forms to receive messages.');">
+          <div class="grid gap-4">
+            <div>
+              <label class="text-sm text-gray-600 dark:text-gray-300">Name</label>
+              <input type="text" required class="mt-1 w-full px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent" placeholder="Your name" />
+            </div>
+            <div>
+              <label class="text-sm text-gray-600 dark:text-gray-300">Email</label>
+              <input type="email" required class="mt-1 w-full px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent" placeholder="name@example.com" />
+            </div>
+            <div>
+              <label class="text-sm text-gray-600 dark:text-gray-300">Message</label>
+              <textarea required rows="4" class="mt-1 w-full px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent" placeholder="Hello…"></textarea>
+            </div>
+            <button type="submit" class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700">Send</button>
+            <p class="text-xs text-gray-500">Tip: To receive form submissions on a static site, connect <a href="https://formspree.io" class="underline">Formspree</a> or enable Netlify Forms.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="py-10 border-t border-gray-200/70 dark:border-gray-800/70">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-gray-600 dark:text-gray-400">© <span id="year"></span> Rishabh Shukla. All rights reserved.</p>
+        <div class="flex items-center gap-4 text-sm">
+          <a href="#home" class="hover:text-brand-600">Back to top</a>
+          <a href="cv.pdf" class="hover:text-brand-600" download>CV</a>
+          <a href="https://www.linkedin.com/in/rishabh-shukla-5879b0172" class="hover:text-brand-600" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Dark mode toggle
+    const toggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const stored = localStorage.getItem('theme');
+    if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      root.classList.add('dark');
+    }
+    toggle?.addEventListener('click', () => {
+      root.classList.toggle('dark');
+      localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // Mobile menu
+    const btn = document.getElementById('mobileMenuBtn');
+    const nav = document.getElementById('mobileNav');
+    btn?.addEventListener('click', () => nav.classList.toggle('hidden'));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
