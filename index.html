@@ -464,14 +464,14 @@
         <p class="text-sm text-gray-600 dark:text-gray-400">© <span id="year"></span> Rishabh Shukla. All rights reserved.</p>
         <div class="flex items-center gap-4 text-sm">
           <a href="#home" class="hover:text-brand-600">Back to top</a>
-          <a href="cv.pdf" class="hover:text-brand-600" download>CV</a>
+          <!-- <a href="cv.pdf" class="hover:text-brand-600" download>CV</a> -->
           <a href="https://www.linkedin.com/in/rishabh-shukla-5879b0172" class="hover:text-brand-600" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
     </div>
   </footer>
-
-  <script>
+  
+  <!-- <script>
     // Dark mode toggle
     const toggle = document.getElementById('themeToggle');
     const root = document.documentElement;
@@ -491,6 +491,32 @@
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  </script> -->
+  <script>
+  // Default to LIGHT unless the user explicitly chose dark earlier
+  const root = document.documentElement;
+  const stored = localStorage.getItem('theme');
+  if (stored === 'dark') {
+    root.classList.add('dark');
+  } else {
+    root.classList.remove('dark');
+  }
+
+  // Toggle (keeps your existing button)
+  const toggle = document.getElementById('themeToggle');
+  toggle?.addEventListener('click', () => {
+    const isDark = root.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+
+  // Mobile menu
+  const btn = document.getElementById('mobileMenuBtn');
+  const nav = document.getElementById('mobileNav');
+  btn?.addEventListener('click', () => nav.classList.toggle('hidden'));
+
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
