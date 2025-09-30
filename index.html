@@ -402,24 +402,50 @@
             </a>
           </div>
         </div>
-        <form class="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200/70 dark:border-gray-800/70" onsubmit="event.preventDefault(); alert('This is a static demo form. Replace with Formspree/Netlify forms to receive messages.');">
-          <div class="grid gap-4">
-            <div>
-              <label class="text-sm text-gray-600 dark:text-gray-300">Name</label>
-              <input type="text" required class="mt-1 w-full px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent" placeholder="Your name" />
-            </div>
-            <div>
-              <label class="text-sm text-gray-600 dark:text-gray-300">Email</label>
-              <input type="email" required class="mt-1 w-full px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent" placeholder="name@example.com" />
-            </div>
-            <div>
-              <label class="text-sm text-gray-600 dark:text-gray-300">Message</label>
-              <textarea required rows="4" class="mt-1 w-full px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent" placeholder="Hello…"></textarea>
-            </div>
-            <button type="submit" class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700">Send</button>
-            <p class="text-xs text-gray-500">Tip: To receive form submissions on a static site, connect <a href="https://formspree.io" class="underline">Formspree</a> or enable Netlify Forms.</p>
-          </div>
-        </form>
+       <form
+  id="contact-form"
+  action="https://formspree.io/f/mdkwglgw "  <!-- put your real Formspree ID here -->
+  method="POST"
+  class="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200/70 dark:border-gray-800/70"
+>
+  <!-- Honeypot (spam protection) -->
+  <input type="text" name="_gotcha" class="hidden" autocomplete="off" style="display:none" />
+
+  <div class="grid gap-4">
+    <div>
+      <label class="text-sm text-gray-600 dark:text-gray-300" for="name">Name</label>
+      <input id="name" name="name" type="text" required
+             class="mt-1 w-full px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent"
+             placeholder="Your name" />
+    </div>
+
+    <div>
+      <label class="text-sm text-gray-600 dark:text-gray-300" for="email">Email</label>
+      <input id="email" name="email" type="email" required
+             class="mt-1 w-full px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent"
+             placeholder="name@example.com" />
+    </div>
+
+    <div>
+      <label class="text-sm text-gray-600 dark:text-gray-300" for="message">Message</label>
+      <textarea id="message" name="message" rows="4" required
+                class="mt-1 w-full px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent"
+                placeholder="Hello…"></textarea>
+    </div>
+
+    <!-- Optional: set a custom email subject -->
+    <input type="hidden" name="_subject" value="New message from Rishabh website" />
+    <!-- Optional: redirect back to your site after submit -->
+    <!-- <input type="hidden" name="_next" value="https://<your-username>.github.io/rishabh-website/?sent=1" /> -->
+
+    <button type="submit" class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700">
+      Send
+    </button>
+
+    <p class="text-xs text-gray-500">Powered by Formspree</p>
+  </div>
+</form>
+
       </div>
     </div>
   </section>
