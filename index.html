@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
@@ -8,6 +8,26 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ⬇️ Force default LIGHT for everyone; only go dark if new key says so -->
+  <script>
+    (function () {
+      var KEY = 'theme_pref_v2';          // new storage key
+      var saved = localStorage.getItem(KEY);
+      if (saved === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark'); // DEFAULT = LIGHT
+      }
+      // One-time migration: remove old key so past dark choices don't apply
+      var MIG = 'theme_migrated_v2';
+      if (!localStorage.getItem(MIG)) {
+        try { localStorage.removeItem('theme'); } catch(e) {}
+        localStorage.setItem(MIG, '1');
+      }
+    })();
+  </script>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -21,17 +41,14 @@
       }
     }
   </script>
-  <!-- <style>
-    .glass { backdrop-filter: blur(10px); background: rgba(255,255,255,0.7); }
-    @media (prefers-color-scheme: dark) { .glass { background: rgba(17,24,39,0.6); } }
-  </style> -->
-  <style>
-  .glass { backdrop-filter: blur(10px); background: rgba(255,255,255,0.7); }
-  /* Tie dark styling to your site toggle, not the device preference */
-  .dark .glass { background: rgba(17,24,39,0.6); }
-</style>
 
+  <!-- Glass style: dark variant is tied to .dark (site toggle), NOT device preference -->
+  <style>
+    .glass { backdrop-filter: blur(10px); background: rgba(255,255,255,0.7); }
+    .dark .glass { background: rgba(17,24,39,0.6); }
+  </style>
 </head>
+
 <body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
   <!-- ===== Top Bar / Nav ===== -->
   <header class="sticky top-0 z-50 border-b border-gray-200/60 dark:border-gray-800/80 bg-white/70 dark:bg-gray-900/50 glass">
@@ -52,20 +69,20 @@
           <a href="#service" class="hover:text-brand-600">Service</a>
           <a href="#contact" class="hover:text-brand-600">Contact</a>
         </nav>
-        <!-- <div class="flex items-center gap-2">
+        <!-- (Optional) Re-enable this block if you want a visible theme switch & CV button
+        <div class="flex items-center gap-2">
           <a href="cv.pdf" class="hidden sm:inline-flex px-3 py-2 rounded-xl bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700" download>
             Download CV
           </a>
           <button id="themeToggle" aria-label="Toggle theme" class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800">
-            <!-- sun -->
             <svg id="sun" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 block dark:hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M6.76 4.84l-1.8-1.79-1.42 1.41 1.79 1.8 1.43-1.42zM1 13h3v-2H1v2zm10-9h2V1h-2v3zm7.04 1.46l1.79-1.8-1.41-1.41-1.8 1.79 1.42 1.42zM20 11v2h3v-2h-3zm-1.76 8.16l1.8 1.79 1.41-1.41-1.79-1.8-1.42 1.42zM11 20h2v3h-2v-3zM4.22 18.36l-1.79 1.8 1.41 1.41 1.8-1.79-1.42-1.42z"/><circle cx="12" cy="12" r="5"/></svg>
-            <!-- moon -->
             <svg id="moon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:block" viewBox="0 0 24 24" fill="currentColor"><path d="M21.64 13A9 9 0 0111 2.36 9 9 0 1021.64 13z"/></svg>
           </button>
           <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800" aria-label="Open menu">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
           </button>
-        </div> -->
+        </div>
+        -->
       </div>
       <!-- mobile nav -->
       <nav id="mobileNav" class="md:hidden hidden pb-4">
@@ -102,7 +119,6 @@
         </div>
         <div class="relative">
           <div class="aspect-[4/3] rounded-3xl bg-gradient-to-tr from-brand-200 to-brand-400 dark:from-gray-700 dark:to-gray-800 shadow-xl overflow-hidden">
-            <!-- Replace this placeholder with your photo: ./assets/profile.jpg -->
             <img src="./assets/profile.jpg" alt="Rishabh Shukla portrait placeholder" class="h-full w-full object-cover mix-blend-multiply opacity-80" />
           </div>
           <div class="absolute -bottom-6 -left-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-4 w-56 border border-gray-200/60 dark:border-gray-700/60">
@@ -142,7 +158,6 @@
         <a href="https://www.linkedin.com/in/rishabh-shukla-5879b0172" target="_blank" rel="noopener" class="text-sm text-brand-700 hover:underline">More on LinkedIn →</a>
       </div>
       <div class="mt-6 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Duplicate/modify cards as you post updates -->
         <article class="rounded-2xl border border-gray-200/70 dark:border-gray-800/70 p-5 bg-gray-50/60 dark:bg-gray-900">
           <div class="text-xs text-gray-500">Aug–Sep 2025</div>
           <h3 class="font-semibold">IJCNN 2025: Face Image Inpainting paper</h3>
@@ -185,36 +200,16 @@
         <div class="text-sm text-gray-500">*Full list available on request</div>
       </div>
       <ol class="mt-6 space-y-4 list-decimal list-inside">
-        <li>
-          <span class="font-semibold">Analyzing Face Image Inpainting with Attribute-Driven Generative Network</span> — <span class="italic">International Joint Conference on Neural Networks</span>, 2025.
-        </li>
-        <li>
-          <span class="font-semibold">Parallel Prints: Generating Realistic Cancelable Fingerprint Templates</span> — <span class="italic">WACV Workshop</span>, 2025.
-        </li>
-        <li>
-          <span class="font-semibold">Bridging the Gap: Creating Authentic Biometric Templates for Secure Authentication Systems</span> — <span class="italic">IEEE SMC</span>, 2024.
-        </li>
-        <li>
-          <span class="font-semibold">Vikriti-ID: A Novel Approach For Real Looking Fingerprint Dataset Generation</span> — <span class="italic">WACV</span>, 2024.
-        </li>
-        <li>
-          <span class="font-semibold">Secure and Privacy Preserving Proxy Biometrics Identities</span> — <span class="italic">AINA</span>, 2023.
-        </li>
-        <li>
-          <span class="font-semibold">Fingerprint digital twin for secure and privacy preserving biometric authentication</span> — <span class="italic">IEEE SMC</span>, 2023.
-        </li>
-        <li>
-          <span class="font-semibold">Deep learning based cancelable biometric system</span> — <span class="italic">ICCCNT</span>, 2023.
-        </li>
-        <li>
-          <span class="font-semibold">An Experimental Study on Random Projection Based Biometric Security</span> — <span class="italic">IEEE BigData</span>, 2023.
-        </li>
-        <li>
-          <span class="font-semibold">Optical coherence tomography classification through Deep Learning</span> — <span class="italic">GlobalCon-CEPT</span>, 2022.
-        </li>
-        <li>
-          <span class="font-semibold">Rural Electrification Using Computer Vision and Wireless Sensor Networks</span> — <span class="italic">CONIT</span>, 2022.
-        </li>
+        <li><span class="font-semibold">Analyzing Face Image Inpainting with Attribute-Driven Generative Network</span> — <span class="italic">International Joint Conference on Neural Networks</span>, 2025.</li>
+        <li><span class="font-semibold">Parallel Prints: Generating Realistic Cancelable Fingerprint Templates</span> — <span class="italic">WACV Workshop</span>, 2025.</li>
+        <li><span class="font-semibold">Bridging the Gap: Creating Authentic Biometric Templates for Secure Authentication Systems</span> — <span class="italic">IEEE SMC</span>, 2024.</li>
+        <li><span class="font-semibold">Vikriti-ID: A Novel Approach For Real Looking Fingerprint Dataset Generation</span> — <span class="italic">WACV</span>, 2024.</li>
+        <li><span class="font-semibold">Secure and Privacy Preserving Proxy Biometrics Identities</span> — <span class="italic">AINA</span>, 2023.</li>
+        <li><span class="font-semibold">Fingerprint digital twin for secure and privacy preserving biometric authentication</span> — <span class="italic">IEEE SMC</span>, 2023.</li>
+        <li><span class="font-semibold">Deep learning based cancelable biometric system</span> — <span class="italic">ICCCNT</span>, 2023.</li>
+        <li><span class="font-semibold">An Experimental Study on Random Projection Based Biometric Security</span> — <span class="italic">IEEE BigData</span>, 2023.</li>
+        <li><span class="font-semibold">Optical coherence tomography classification through Deep Learning</span> — <span class="italic">GlobalCon-CEPT</span>, 2022.</li>
+        <li><span class="font-semibold">Rural Electrification Using Computer Vision and Wireless Sensor Networks</span> — <span class="italic">CONIT</span>, 2022.</li>
       </ol>
     </div>
   </section>
@@ -224,7 +219,6 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <h2 class="text-2xl font-bold">Projects</h2>
       <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Project Card Template -->
         <article class="rounded-2xl overflow-hidden border border-gray-200/70 dark:border-gray-800/70 bg-gray-50/60 dark:bg-gray-900">
           <img src="./assets/project-proxy-fp.png" alt="Proxy fingerprints placeholder" class="aspect-video w-full object-cover" />
           <div class="p-5">
@@ -249,7 +243,6 @@
             <div class="mt-3 flex flex-wrap gap-2 text-xs"><span class="px-2 py-1 bg-brand-100 text-brand-800 rounded-full">Restoration</span><span class="px-2 py-1 bg-gray-200/60 dark:bg-gray-800 rounded-full">CNN</span></div>
           </div>
         </article>
-        <!-- REPLACEMENT 1: Digital Twin project (replaces SinGAN card) -->
         <article class="rounded-2xl overflow-hidden border border-gray-200/70 dark:border-gray-800/70 bg-gray-50/60 dark:bg-gray-900">
           <img src="./assets/project-digital-twin.png" alt="Fingerprint digital twin placeholder" class="aspect-video w-full object-cover" />
           <div class="p-5">
@@ -258,7 +251,6 @@
             <div class="mt-3 flex flex-wrap gap-2 text-xs"><span class="px-2 py-1 bg-brand-100 text-brand-800 rounded-full">Digital Twin</span><span class="px-2 py-1 bg-gray-200/60 dark:bg-gray-800 rounded-full">Cancelable Biometrics</span></div>
           </div>
         </article>
-        <!-- REPLACEMENT 2: Bridging the Gap project (replaces Outpainting card) -->
         <article class="rounded-2xl overflow-hidden border border-gray-200/70 dark:border-gray-800/70 bg-gray-50/60 dark:bg-gray-900">
           <img src="./assets/project-bridging-gap.png" alt="Authentic biometric templates placeholder" class="aspect-video w-full object-cover" />
           <div class="p-5">
@@ -322,7 +314,6 @@
             <span class="text-xs text-gray-500">Pursuing</span>
           </div>
           <div class="text-sm text-gray-600 dark:text-gray-300">Indian Institute of Technology, Jammu</div>
-          
         </div>
         <div class="rounded-2xl p-5 border border-gray-200/70 dark:border-gray-800/70 bg-gray-50/60 dark:bg-gray-900">
           <div class="flex items-center justify-between">
@@ -330,7 +321,6 @@
             <span class="text-xs text-gray-500">2019–2021</span>
           </div>
           <div class="text-sm text-gray-600 dark:text-gray-300">National Institute of Technology, Puducherry</div>
-          
         </div>
         <div class="rounded-2xl p-5 border border-gray-200/70 dark:border-gray-800/70 bg-gray-50/60 dark:bg-gray-900">
           <div class="flex items-center justify-between">
@@ -338,7 +328,6 @@
             <span class="text-xs text-gray-500">2015–2019</span>
           </div>
           <div class="text-sm text-gray-600 dark:text-gray-300">Dr. A.P.J. Abdul Kalam Technical University</div>
-          
           <div class="text-xs text-gray-500 mt-1">GATE (2019): 89 percentile</div>
         </div>
       </div>
@@ -408,50 +397,39 @@
             </a>
           </div>
         </div>
-       <!-- Formspree endpoint: replace mdkwglgw with your own if needed -->
-<form
-  id="contact-form"
-  action="https://formspree.io/f/mdkwglgw"
-  method="POST"
-  class="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200/70 dark:border-gray-800/70"
->
-  <!-- Honeypot (spam protection) -->
-  <input type="text" name="_gotcha" class="hidden" autocomplete="off" style="display:none" />
 
-  <div class="grid gap-4">
-    <div>
-      <label class="text-sm text-gray-600 dark:text-gray-300" for="name">Name</label>
-      <input id="name" name="name" type="text" required
-             class="mt-1 w-full px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent"
-             placeholder="Your name" />
-    </div>
-
-    <div>
-      <label class="text-sm text-gray-600 dark:text-gray-300" for="email">Email</label>
-      <input id="email" name="email" type="email" required
-             class="mt-1 w-full px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent"
-             placeholder="name@example.com" />
-    </div>
-
-    <div>
-      <label class="text-sm text-gray-600 dark:text-gray-300" for="message">Message</label>
-      <textarea id="message" name="message" rows="4" required
-                class="mt-1 w-full px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent"
-                placeholder="Hello…"></textarea>
-    </div>
-
-    <!-- Optional: set a custom email subject -->
-    <input type="hidden" name="_subject" value="New message from Rishabh website" />
-    <!-- Optional: redirect back to your site after submit -->
-    <!-- <input type="hidden" name="_next" value="https://<your-username>.github.io/rishabh-website/?sent=1" /> -->
-
-    <button type="submit" class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700">
-      Send
-    </button>
-
-    <p class="text-xs text-gray-500">Powered by Formspree</p>
-  </div>
-</form>
+        <!-- Formspree endpoint: replace mdkwglgw with your own if needed -->
+        <form
+          id="contact-form"
+          action="https://formspree.io/f/mdkwglgw"
+          method="POST"
+          class="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200/70 dark:border-gray-800/70"
+        >
+          <input type="text" name="_gotcha" class="hidden" autocomplete="off" style="display:none" />
+          <div class="grid gap-4">
+            <div>
+              <label class="text-sm text-gray-600 dark:text-gray-300" for="name">Name</label>
+              <input id="name" name="name" type="text" required
+                    class="mt-1 w-full px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent"
+                    placeholder="Your name" />
+            </div>
+            <div>
+              <label class="text-sm text-gray-600 dark:text-gray-300" for="email">Email</label>
+              <input id="email" name="email" type="email" required
+                    class="mt-1 w-full px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent"
+                    placeholder="name@example.com" />
+            </div>
+            <div>
+              <label class="text-sm text-gray-600 dark:text-gray-300" for="message">Message</label>
+              <textarea id="message" name="message" rows="4" required
+                        class="mt-1 w-full px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent"
+                        placeholder="Hello…"></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="New message from Rishabh website" />
+            <button type="submit" class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700">Send</button>
+            <p class="text-xs text-gray-500">Powered by Formspree</p>
+          </div>
+        </form>
 
       </div>
     </div>
@@ -464,24 +442,20 @@
         <p class="text-sm text-gray-600 dark:text-gray-400">© <span id="year"></span> Rishabh Shukla. All rights reserved.</p>
         <div class="flex items-center gap-4 text-sm">
           <a href="#home" class="hover:text-brand-600">Back to top</a>
-          <!-- <a href="cv.pdf" class="hover:text-brand-600" download>CV</a> -->
           <a href="https://www.linkedin.com/in/rishabh-shukla-5879b0172" class="hover:text-brand-600" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
     </div>
   </footer>
-  
-  <!-- <script>
-    // Dark mode toggle
-    const toggle = document.getElementById('themeToggle');
+
+  <!-- Scripts -->
+  <script>
+    // Theme toggle (uses new key). If the toggle button is commented out, this safely does nothing.
+    const KEY = 'theme_pref_v2';
     const root = document.documentElement;
-    const stored = localStorage.getItem('theme');
-    if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      root.classList.add('dark');
-    }
-    toggle?.addEventListener('click', () => {
-      root.classList.toggle('dark');
-      localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+    document.getElementById('themeToggle')?.addEventListener('click', () => {
+      const isDark = root.classList.toggle('dark');
+      localStorage.setItem(KEY, isDark ? 'dark' : 'light');
     });
 
     // Mobile menu
@@ -491,32 +465,6 @@
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
-  </script> -->
-  <script>
-  // Default to LIGHT unless the user explicitly chose dark earlier
-  const root = document.documentElement;
-  const stored = localStorage.getItem('theme');
-  if (stored === 'dark') {
-    root.classList.add('dark');
-  } else {
-    root.classList.remove('dark');
-  }
-
-  // Toggle (keeps your existing button)
-  const toggle = document.getElementById('themeToggle');
-  toggle?.addEventListener('click', () => {
-    const isDark = root.classList.toggle('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  });
-
-  // Mobile menu
-  const btn = document.getElementById('mobileMenuBtn');
-  const nav = document.getElementById('mobileNav');
-  btn?.addEventListener('click', () => nav.classList.toggle('hidden'));
-
-  // Year
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-
+  </script>
 </body>
 </html>
